@@ -1,0 +1,503 @@
+// ==================== MOCK DATA ====================
+const mockQuestions = [
+    {
+        id: 1,
+        category: "Engenharia de Software",
+        text: "Em Python, qual e a principal diferenca entre uma lista (list) e uma tupla (tuple)?",
+        options: [
+            "A) Listas sao mais rapidas que tuplas em todas as operacoes",
+            "B) Tuplas sao imutaveis, enquanto listas podem ser modificadas apos a criacao",
+            "C) Tuplas podem conter apenas elementos do mesmo tipo",
+            "D) Listas nao suportam indexacao negativa"
+        ],
+        correct: 1,
+        explanation: "Tuplas sao estruturas de dados imutaveis em Python, o que significa que nao podem ser alteradas apos a criacao. Listas sao mutaveis, permitindo adicionar, remover ou modificar elementos. Essa imutabilidade torna tuplas mais eficientes em memoria e uteis como chaves de dicionarios."
+    },
+    {
+        id: 2,
+        category: "Direito Civil",
+        text: "Segundo o Codigo Civil Brasileiro, qual e o prazo prescricional para a cobranca de alugueis de imoveis urbanos?",
+        options: ["A) 2 anos", "B) 3 anos", "C) 5 anos", "D) 10 anos"],
+        correct: 2,
+        explanation: "Art. 206, § 5o, inciso IV do Codigo Civil estabelece o prazo prescricional de 5 anos para a cobranca de alugueis de imoveis urbanos. Este prazo e contado da data em que o aluguel se torna exigivel, ou seja, do vencimento de cada parcela mensal."
+    },
+    {
+        id: 3,
+        category: "Matematica Financeira",
+        text: "Um capital de R$ 10.000,00 e aplicado a juros compostos de 2% ao mes. Qual sera o montante apos 3 meses?",
+        options: ["A) R$ 10.612,08", "B) R$ 10.600,00", "C) R$ 10.612,00", "D) R$ 10.620,00"],
+        correct: 0,
+        explanation: "Formula: M = C x (1 + i)^n. M = 10.000 x (1,02)^3 = 10.000 x 1,061208 = 10.612,08. A diferenca entre juros simples (R$ 10.600,00) e compostos se deve ao 'juros sobre juros' acumulado nos meses subsequentes ao primeiro."
+    },
+    {
+        id: 4,
+        category: "Raciocinio Logico",
+        text: "Se todos os B sao A, e alguns C sao B, entao necessariamente:",
+        options: ["A) Todos os C sao A", "B) Alguns C sao A", "C) Nenhum C e A", "D) Todos os A sao C"],
+        correct: 1,
+        explanation: "Pela logica silogistica: se todos B sao A, e alguns C sao B, entao esses 'alguns C que sao B' tambem sao A (porque todos B sao A). Portanto, necessariamente alguns C sao A. Nao podemos afirmar que todos C sao A, pois apenas 'alguns' C sao B."
+    },
+    {
+        id: 5,
+        category: "Lingua Portuguesa",
+        text: "Qual das alternativas apresenta o uso correto da crase?",
+        options: [
+            "A) Vou a escola todos os dias",
+            "B) Refiro-me a voce com respeito",
+            "C) Cheguei a cidade ontem a noite",
+            "D) Fui a festa e encontrei a Maria"
+        ],
+        correct: 3,
+        explanation: "A crase (a) ocorre quando ha a fusao da preposicao 'a' com o artigo definido feminino 'a'. Em 'Fui a festa', temos 'a' (preposicao exigida pelo verbo 'ir') + 'a' (artigo de 'festa') = 'a'. Nas outras alternativas, nao ha crase: 'a escola' (sem artigo definido feminino precedido de preposicao 'a'), 'a voce' (pronome nao exige), 'a cidade' (mesmo caso)."
+    },
+    {
+        id: 6,
+        category: "Engenharia de Software",
+        text: "Qual principio SOLID recomenda que uma classe deve ter apenas um motivo para mudar?",
+        options: ["A) Open/Closed Principle", "B) Liskov Substitution Principle", "C) Single Responsibility Principle", "D) Dependency Inversion Principle"],
+        correct: 2,
+        explanation: "O Single Responsibility Principle (Principio da Responsabilidade Unica), definido por Robert C. Martin, estabelece que uma classe deve ter um, e apenas um, motivo para mudar. Isso significa que cada classe deve ter apenas uma responsabilidade ou trabalho dentro do sistema, facilitando manutencao e testes."
+    },
+    {
+        id: 7,
+        category: "Direito Civil",
+        text: "No regime de comunhao parcial de bens, quais bens sao exclusivos de cada conjuge?",
+        options: [
+            "A) Apenas os bens adquiridos antes do casamento",
+            "B) Bens adquiridos antes do casamento, por heranca, e os de uso pessoal",
+            "C) Todos os bens adquiridos durante o casamento",
+            "D) Apenas os bens de uso pessoal"
+        ],
+        correct: 1,
+        explanation: "Art. 1.640 do Codigo Civil: no regime de comunhao parcial, sao exclusivos de cada conjuge: I - os bens que lhe cabiam ao tempo do casamento; II - os que lhe sobrevierem durante a constancia deste, por doacao ou heranca; III - os sub-rogados no lugar destes; IV - os de uso pessoal; V - os de sua profissao ou oficio."
+    },
+    {
+        id: 8,
+        category: "Matematica Financeira",
+        text: "Qual e a taxa equivalente mensal de uma taxa de 12% ao ano, no regime de juros compostos?",
+        options: ["A) 1%", "B) 0,9489%", "C) 1,2%", "D) 0,95%"],
+        correct: 1,
+        explanation: "Formula: (1 + i_anual) = (1 + i_mensal)^12. Logo: i_mensal = (1,12)^(1/12) - 1 = 1,00948879 - 1 = 0,00948879 ≈ 0,9489% a.m. Nao e simplesmente 12% / 12 = 1%, pois em juros compostos as taxas equivalentes seguem relacao exponencial, nao linear."
+    },
+    {
+        id: 9,
+        category: "Raciocinio Logico",
+        text: "Em uma sequencia logica, qual numero completa a serie: 2, 6, 12, 20, 30, __?",
+        options: ["A) 40", "B) 42", "C) 44", "D) 48"],
+        correct: 1,
+        explanation: "A sequencia segue o padrao n x (n+1): 1x2=2, 2x3=6, 3x4=12, 4x5=20, 5x6=30, 6x7=42. Tambem pode ser vista como a soma dos numeros pares consecutivos: 2, 2+4=6, 6+6=12, 12+8=20, 20+10=30, 30+12=42."
+    },
+    {
+        id: 10,
+        category: "Lingua Portuguesa",
+        text: "Qual e a classificacao morfologica da palavra 'rapidamente' na frase 'Ele corre rapidamente'?",
+        options: ["A) Adjetivo", "B) Adverbio", "C) Preposicao", "D) Conjuncao"],
+        correct: 1,
+        explanation: "'Rapidamente' e um adverbio de modo, derivado do adjetivo 'rapido' + sufixo '-mente'. Adverbios de modo respondem a pergunta 'como?' e modificam o verbo (neste caso, 'corre'), indicando a maneira como a acao e realizada."
+    },
+    {
+        id: 11,
+        category: "Engenharia de Software",
+        text: "Em um sistema de controle de versao Git, qual comando e usado para criar uma nova branch e mudar para ela simultaneamente?",
+        options: ["A) git branch nome-branch", "B) git checkout nome-branch", "C) git checkout -b nome-branch", "D) git create-branch nome-branch"],
+        correct: 2,
+        explanation: "O comando 'git checkout -b nome-branch' cria uma nova branch (-b flag de 'branch') e ja faz o checkout (mudanca) para essa branch em uma unica operacao. 'git branch' apenas cria sem mudar, e 'git checkout' apenas muda para uma branch existente."
+    },
+    {
+        id: 12,
+        category: "Direito Civil",
+        text: "Qual e o prazo para o proprietario reaver a posse de imovel usurpado mediante acao de reintegracao de posse?",
+        options: ["A) 1 ano", "B) 2 anos", "C) 5 anos", "D) Nao ha prazo prescricional"],
+        correct: 0,
+        explanation: "Art. 1.210 do Codigo Civil: 'Aquele que tiver justo titulo e boa-fe possuira o imovel usurpado, mediante acao de reintegracao de posse, dentro de um ano, contado da usurpacao'. Apos esse prazo, o possuidor de boa-fe pode alegar usucapiao ou, pelo menos, manter a posse."
+    },
+    {
+        id: 13,
+        category: "Matematica Financeira",
+        text: "Um desconto racional simples de R$ 200,00 foi aplicado sobre uma duplicata de R$ 2.000,00. Se a taxa foi de 5% ao mes, qual foi o prazo de antecipacao?",
+        options: ["A) 1 mes", "B) 2 meses", "C) 2,5 meses", "D) 3 meses"],
+        correct: 1,
+        explanation: "Desconto Racional Simples: D = N x i x n / (1 + i x n). Ou: D = A x i x n, onde A = N - D = 1.800. Logo: 200 = 1.800 x 0,05 x n → 200 = 90n → n = 200/90 = 2,22... (nao bate). Alternativa: D = N x i x n (desconto simples 'por fora'): 200 = 2.000 x 0,05 x n → n = 2 meses. O enunciado se refere ao desconto comercial simples (mais comum em concursos), cujo prazo e 2 meses."
+    },
+    {
+        id: 14,
+        category: "Raciocinio Logico",
+        text: "Se A implica B, e B implica C, entao necessariamente:",
+        options: ["A) C implica A", "B) A implica C", "C) B implica A", "D) Nenhuma das alternativas"],
+        correct: 1,
+        explanation: "Pela propriedade transitiva da implicacao logica: se A → B e B → C, entao A → C. Isso significa que se A e verdadeiro, entao C tambem sera verdadeiro. A transitividade e uma das propriedades fundamentais da logica proposicional."
+    },
+    {
+        id: 15,
+        category: "Lingua Portuguesa",
+        text: "Na frase 'O livro que voce me emprestou e excelente', a expressao 'que voce me emprestou' funciona como:",
+        options: [
+            "A) Oracao coordenada sindetica",
+            "B) Oracao subordinada adjetiva restritiva",
+            "C) Oracao subordinada substantiva objetiva direta",
+            "D) Oracao subordinada adverbial causal"
+        ],
+        correct: 1,
+        explanation: "A oracao 'que voce me emprestou' e uma subordinada adjetiva restritiva porque: 1) e introduzida pelo pronome relativo 'que'; 2) funciona como adjunto adnominal do substantivo 'livro'; 3) e restritiva porque limita o sentido de 'livro' (nao qualquer livro, mas especificamente aquele que foi emprestado), sem virgulas."
+    }
+];
+
+// ==================== GAME STATE ====================
+const gameState = {
+    level: 1,
+    xp: 0,
+    xpToNext: 100,
+    currentQuestions: [],
+    currentQuestionIndex: 0,
+    score: 0,
+    wrongAnswers: [],
+    timerInterval: null,
+    timeLeft: 0,
+    timerLimit: 0,
+    answered: false,
+    config: {
+        focus: '',
+        area: '',
+        questionCount: 5,
+        timerLimit: 0
+    }
+};
+
+const levels = [
+    { name: "Concurseiro Iniciante", xpNeeded: 100 },
+    { name: "Estudante Dedicado", xpNeeded: 250 },
+    { name: "Concurseiro Intermediario", xpNeeded: 500 },
+    { name: "Expert em Provas", xpNeeded: 800 },
+    { name: "Mestre dos Concursos", xpNeeded: 1200 },
+    { name: "Oraculo da Aprovacao", xpNeeded: 2000 }
+];
+
+// ==================== DOM ELEMENTS ====================
+const screens = {
+    home: document.getElementById('screen-home'),
+    game: document.getElementById('screen-game'),
+    results: document.getElementById('screen-results')
+};
+
+// ==================== SCREEN MANAGEMENT ====================
+function showScreen(screenName) {
+    Object.values(screens).forEach(s => {
+        s.classList.remove('active');
+        setTimeout(() => {
+            if (!s.classList.contains('active')) s.style.display = 'none';
+        }, 400);
+    });
+    const target = screens[screenName];
+    target.style.display = 'flex';
+    setTimeout(() => target.classList.add('active'), 10);
+}
+
+// ==================== HOME SCREEN ====================
+function updateHomeStats() {
+    const levelInfo = levels[Math.min(gameState.level - 1, levels.length - 1)];
+    document.getElementById('home-level').textContent = `Nivel ${gameState.level}: ${levelInfo.name}`;
+    document.getElementById('home-xp').textContent = gameState.xp;
+    document.getElementById('home-xp-next').textContent = gameState.xpToNext;
+}
+
+document.getElementById('config-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    gameState.config.focus = document.getElementById('focus-select').value;
+    gameState.config.area = document.getElementById('area-select').value;
+    gameState.config.questionCount = parseInt(document.querySelector('input[name="question-count"]:checked').value);
+    gameState.config.timerLimit = parseInt(document.querySelector('input[name="timer-limit"]:checked').value);
+    startGame();
+});
+
+// ==================== GAME LOGIC ====================
+function startGame() {
+    gameState.currentQuestionIndex = 0;
+    gameState.score = 0;
+    gameState.wrongAnswers = [];
+    gameState.answered = false;
+    const shuffled = [...mockQuestions].sort(() => Math.random() - 0.5);
+    gameState.currentQuestions = shuffled.slice(0, gameState.config.questionCount);
+    document.getElementById('game-level-text').textContent = `Nivel ${gameState.level}: ${levels[Math.min(gameState.level - 1, levels.length - 1)].name}`;
+    showScreen('game');
+    loadQuestion();
+}
+
+function loadQuestion() {
+    const question = gameState.currentQuestions[gameState.currentQuestionIndex];
+    gameState.answered = false;
+    const progress = ((gameState.currentQuestionIndex) / gameState.currentQuestions.length) * 100;
+    document.getElementById('progress-bar').style.width = progress + '%';
+    document.getElementById('progress-text').textContent = `${gameState.currentQuestionIndex + 1} / ${gameState.currentQuestions.length}`;
+    document.getElementById('score-display').textContent = gameState.score;
+    document.getElementById('question-number').textContent = gameState.currentQuestionIndex + 1;
+    document.getElementById('question-category').textContent = question.category;
+    document.getElementById('question-text').textContent = question.text;
+
+    const optionsContainer = document.getElementById('options-container');
+    optionsContainer.innerHTML = '';
+    question.options.forEach((opt, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn w-full text-left p-4 md:p-5 rounded-2xl border-2 border-slate-700 bg-slate-800/60 text-white font-medium text-sm md:text-base hover:border-violet-500/50 hover:bg-slate-800 transition-all';
+        btn.innerHTML = `<span class="inline-block w-8 h-8 rounded-lg bg-slate-700 text-center leading-8 mr-3 text-sm font-bold text-slate-300">${String.fromCharCode(65 + index)}</span>${opt}`;
+        btn.onclick = () => selectAnswer(index);
+        optionsContainer.appendChild(btn);
+    });
+
+    document.getElementById('feedback-area').classList.add('hidden');
+    setupTimer();
+}
+
+function setupTimer() {
+    const timerContainer = document.getElementById('timer-container');
+    if (gameState.config.timerLimit > 0) {
+        timerContainer.classList.remove('hidden');
+        gameState.timeLeft = gameState.config.timerLimit;
+        updateTimerDisplay();
+        if (gameState.timerInterval) clearInterval(gameState.timerInterval);
+        gameState.timerInterval = setInterval(() => {
+            gameState.timeLeft--;
+            updateTimerDisplay();
+            if (gameState.timeLeft <= 0) {
+                clearInterval(gameState.timerInterval);
+                timeUp();
+            }
+        }, 1000);
+    } else {
+        timerContainer.classList.add('hidden');
+    }
+}
+
+function updateTimerDisplay() {
+    const timerBar = document.getElementById('timer-bar');
+    const timerText = document.getElementById('timer-seconds');
+    const timerContainer = document.getElementById('timer-container');
+    const percentage = (gameState.timeLeft / gameState.config.timerLimit) * 100;
+    timerBar.style.width = percentage + '%';
+    timerText.textContent = gameState.timeLeft + 's';
+
+    if (percentage > 50) {
+        timerBar.className = 'timer-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400';
+        timerText.className = 'font-mono font-bold text-emerald-400';
+        timerContainer.classList.remove('timer-critical');
+    } else if (percentage > 25) {
+        timerBar.className = 'timer-bar h-full bg-gradient-to-r from-amber-500 to-amber-400';
+        timerText.className = 'font-mono font-bold text-amber-400';
+    } else {
+        timerBar.className = 'timer-bar h-full bg-gradient-to-r from-red-500 to-red-400';
+        timerText.className = 'font-mono font-bold text-red-400';
+        timerContainer.classList.add('timer-critical');
+    }
+}
+
+function timeUp() {
+    if (gameState.answered) return;
+    const question = gameState.currentQuestions[gameState.currentQuestionIndex];
+    const buttons = document.querySelectorAll('.option-btn');
+    gameState.wrongAnswers.push({
+        question: question,
+        selected: -1,
+        reason: "Tempo esgotado!"
+    });
+    buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === question.correct) {
+            btn.classList.add('reveal-correct');
+        } else {
+            btn.style.opacity = '0.5';
+        }
+    });
+    showFeedback(false, "Tempo esgotado!");
+}
+
+function selectAnswer(selectedIndex) {
+    if (gameState.answered) return;
+    gameState.answered = true;
+    if (gameState.timerInterval) {
+        clearInterval(gameState.timerInterval);
+        gameState.timerInterval = null;
+    }
+    const question = gameState.currentQuestions[gameState.currentQuestionIndex];
+    const buttons = document.querySelectorAll('.option-btn');
+    const isCorrect = selectedIndex === question.correct;
+    buttons.forEach(btn => btn.disabled = true);
+
+    if (isCorrect) {
+        gameState.score++;
+        buttons[selectedIndex].classList.add('correct');
+        showFeedback(true, "Resposta correta! Excelente!");
+        createConfetti();
+    } else {
+        buttons[selectedIndex].classList.add('wrong');
+        buttons[question.correct].classList.add('reveal-correct');
+        gameState.wrongAnswers.push({
+            question: question,
+            selected: selectedIndex,
+            reason: question.explanation
+        });
+        showFeedback(false, "Resposta incorreta. Nao desista!");
+    }
+}
+
+function showFeedback(isCorrect, message) {
+    const feedbackArea = document.getElementById('feedback-area');
+    const feedbackMessage = document.getElementById('feedback-message');
+    feedbackArea.classList.remove('hidden');
+    feedbackMessage.className = `text-center mb-4 p-4 rounded-2xl font-semibold ${isCorrect ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-red-500/20 text-red-300 border border-red-500/30'}`;
+    feedbackMessage.textContent = message;
+    document.getElementById('score-display').textContent = gameState.score;
+}
+
+document.getElementById('next-btn').addEventListener('click', function() {
+    gameState.currentQuestionIndex++;
+    if (gameState.currentQuestionIndex >= gameState.currentQuestions.length) {
+        showResults();
+    } else {
+        loadQuestion();
+    }
+});
+
+// ==================== RESULTS ====================
+function showResults() {
+    showScreen('results');
+    const total = gameState.currentQuestions.length;
+    const correct = gameState.score;
+    const wrong = total - correct;
+    const percentage = Math.round((correct / total) * 100);
+
+    document.getElementById('result-correct').textContent = correct;
+    document.getElementById('result-wrong').textContent = wrong;
+    document.getElementById('result-percentage').textContent = percentage + '%';
+
+    const circle = document.getElementById('score-circle');
+    const circumference = 2 * Math.PI * 45;
+    const offset = circumference - (percentage / 100) * circumference;
+    setTimeout(() => {
+        circle.style.strokeDashoffset = offset;
+    }, 300);
+
+    const xpGained = correct * 10;
+    const oldLevel = gameState.level;
+    gameState.xp += xpGained;
+
+    let leveledUp = false;
+    let leveledDown = false;
+
+    while (gameState.level < levels.length && gameState.xp >= gameState.xpToNext) {
+        gameState.xp -= gameState.xpToNext;
+        gameState.level++;
+        gameState.xpToNext = levels[Math.min(gameState.level - 1, levels.length - 1)].xpNeeded;
+        leveledUp = true;
+    }
+
+    if (percentage < 50 && gameState.level > 1) {
+        gameState.level--;
+        gameState.xpToNext = levels[Math.min(gameState.level - 1, levels.length - 1)].xpNeeded;
+        gameState.xp = Math.floor(gameState.xpToNext * 0.3);
+        leveledDown = true;
+    }
+
+    if (percentage < 50 && !leveledDown) {
+        gameState.xp = Math.max(0, gameState.xp - 30);
+    }
+
+    document.getElementById('result-xp-gained').textContent = (percentage < 50 ? '' : '+') + (percentage < 50 ? -30 : xpGained);
+    document.getElementById('result-xp-gained').className = 'text-2xl font-bold ' + (percentage < 50 ? 'text-red-400' : 'text-emerald-400');
+    document.getElementById('result-total-xp').textContent = gameState.xp;
+
+    const currentLevelInfo = levels[Math.min(gameState.level - 1, levels.length - 1)];
+    document.getElementById('result-level-text').textContent = `Nivel ${gameState.level}: ${currentLevelInfo.name}`;
+    document.getElementById('result-xp-current').textContent = gameState.xp;
+    document.getElementById('result-xp-next').textContent = gameState.xpToNext;
+    const xpPercentage = (gameState.xp / gameState.xpToNext) * 100;
+    setTimeout(() => {
+        document.getElementById('result-xp-bar').style.width = xpPercentage + '%';
+    }, 500);
+
+    const levelMsgDiv = document.getElementById('level-message');
+    levelMsgDiv.classList.remove('hidden');
+
+    if (leveledUp) {
+        levelMsgDiv.className = 'text-center p-4 rounded-2xl mb-4 bg-gradient-to-r from-violet-500/20 to-purple-500/20 border border-violet-500/40 text-violet-200 font-bold animate-slide-up';
+        levelMsgDiv.innerHTML = `🎉 SUBIU DE NIVEL! Agora voce e <span class="text-white">Nivel ${gameState.level}: ${currentLevelInfo.name}</span>! Continue assim!`;
+        createConfetti();
+        document.getElementById('result-icon').textContent = '🚀';
+        document.getElementById('result-title').textContent = 'Nivel Alcancado!';
+    } else if (leveledDown) {
+        levelMsgDiv.className = 'text-center p-4 rounded-2xl mb-4 bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-500/40 text-red-200 font-bold animate-slide-up';
+        levelMsgDiv.innerHTML = `⚠️ Voce se afastou do seu objetivo, revise seus pontos fracos! Voltou para <span class="text-white">Nivel ${gameState.level}</span>. Nao desista!`;
+        document.getElementById('result-icon').textContent = '💪';
+        document.getElementById('result-title').textContent = 'Continue Estudando!';
+    } else if (percentage >= 70) {
+        levelMsgDiv.className = 'text-center p-4 rounded-2xl mb-4 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/40 text-emerald-200 font-bold animate-slide-up';
+        levelMsgDiv.innerHTML = `✨ Excelente! Mais perto da sua vaga! Voce esta no <span class="text-white">Nivel ${gameState.level}</span>.`;
+        document.getElementById('result-icon').textContent = '🏆';
+        document.getElementById('result-title').textContent = 'Missao Concluida!';
+        createConfetti();
+    } else if (percentage >= 50) {
+        levelMsgDiv.className = 'text-center p-4 rounded-2xl mb-4 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 border border-amber-500/40 text-amber-200 font-bold animate-slide-up';
+        levelMsgDiv.innerHTML = `📚 Bom trabalho, mas da para melhorar! Continue praticando no <span class="text-white">Nivel ${gameState.level}</span>.`;
+        document.getElementById('result-icon').textContent = '📖';
+        document.getElementById('result-title').textContent = 'Bom Esforco!';
+    } else {
+        levelMsgDiv.className = 'text-center p-4 rounded-2xl mb-4 bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-500/40 text-red-200 font-bold animate-slide-up';
+        levelMsgDiv.innerHTML = `😔 Voce se afastou do seu objetivo, revise seus pontos fracos! Foque nos estudos para evoluir do <span class="text-white">Nivel ${gameState.level}</span>.`;
+        document.getElementById('result-icon').textContent = '📚';
+        document.getElementById('result-title').textContent = 'Nao Desista!';
+    }
+
+    // Oracle section
+    const oracleSection = document.getElementById('oracle-section');
+    const oracleList = document.getElementById('oracle-list');
+    if (gameState.wrongAnswers.length > 0) {
+        oracleSection.classList.remove('hidden');
+        oracleList.innerHTML = '';
+        gameState.wrongAnswers.forEach((wa, idx) => {
+            const item = document.createElement('div');
+            item.className = 'oracle-item bg-slate-800/40 rounded-xl p-4';
+            const selectedLetter = wa.selected >= 0 ? String.fromCharCode(65 + wa.selected) : '—';
+            const correctLetter = String.fromCharCode(65 + wa.question.correct);
+            item.innerHTML = `
+                <div class="flex items-start gap-3">
+                    <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-red-500/20 text-red-400 font-bold text-sm flex items-center justify-center">${idx + 1}</span>
+                    <div class="flex-1">
+                        <p class="text-sm text-slate-300 font-medium mb-2">${wa.question.text}</p>
+                        <div class="flex gap-4 text-xs mb-2">
+                            <span class="text-red-400">Sua resposta: ${selectedLetter}</span>
+                            <span class="text-emerald-400">Correta: ${correctLetter}</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed bg-slate-900/50 rounded-lg p-3 border border-slate-700/50">💡 <span class="text-violet-300 font-semibold">Oraculo diz:</span> ${wa.reason}</p>
+                    </div>
+                </div>
+            `;
+            oracleList.appendChild(item);
+        });
+    } else {
+        oracleSection.classList.add('hidden');
+    }
+
+    updateHomeStats();
+}
+
+function createConfetti() {
+    const colors = ['#7c3aed', '#a855f7', '#ec4899', '#10b981', '#f59e0b', '#3b82f6'];
+    for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.width = Math.random() * 8 + 4 + 'px';
+        confetti.style.height = Math.random() * 8 + 4 + 'px';
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        confetti.style.animationDuration = Math.random() * 2 + 2 + 's';
+        confetti.style.animationDelay = Math.random() * 0.5 + 's';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+    }
+}
+
+document.getElementById('play-again-btn').addEventListener('click', function() {
+    showScreen('home');
+});
+
+// Initialize
+updateHomeStats();

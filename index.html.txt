@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Concurseiro - Missao Aprovacao</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+<base target="_blank">
+</head>
+<body class="bg-slate-900 text-white min-h-screen overflow-x-hidden">
+
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-purple-600/10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl animate-float" style="animation-delay: 1.5s;"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-600/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- TELA 1: CONFIGURACAO -->
+    <div id="screen-home" class="screen active min-h-screen flex-col items-center justify-center p-4 relative z-10">
+        <div class="w-full max-w-lg">
+            <div class="text-center mb-10 animate-slide-up">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-violet-600 to-purple-600 mb-4 shadow-lg shadow-purple-500/30 animate-float">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">Quiz Concurseiro</h1>
+                <p class="text-slate-400 text-lg">Sua jornada para a aprovacao comeca aqui</p>
+            </div>
+
+            <div class="glass-panel rounded-3xl p-6 md:p-8 shadow-2xl shadow-purple-900/20 animate-slide-up" style="animation-delay: 0.1s;">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-violet-500/20 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-xl font-bold text-white">Configure sua Missao</h2>
+                </div>
+
+                <form id="config-form" class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-2">Foco do Estudo</label>
+                        <select id="focus-select" class="select-custom w-full bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all">
+                            <option value="vestibular-unb">Vestibular UnB</option>
+                            <option value="concurso-tse">Concurso TSE Unificado</option>
+                            <option value="enem">ENEM</option>
+                            <option value="concurso-pf">Concurso PF - Agente</option>
+                            <option value="concurso-prf">Concurso PRF</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-2">Area de Conhecimento</label>
+                        <select id="area-select" class="select-custom w-full bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all">
+                            <option value="engenharia-software">Engenharia de Software / Python</option>
+                            <option value="direito-civil">Direito Civil</option>
+                            <option value="matematica-financeira">Matematica Financeira</option>
+                            <option value="portugues">Lingua Portuguesa</option>
+                            <option value="raciocinio-logico">Raciocinio Logico</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-2">Quantidade de Questoes</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="question-count" value="5" class="peer hidden" checked>
+                                <div class="text-center py-3 rounded-xl border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-violet-600/20 peer-checked:border-violet-500 peer-checked:text-violet-300 transition-all hover:bg-slate-800">
+                                    <span class="font-bold text-lg">5</span><span class="block text-xs">questoes</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="question-count" value="10" class="peer hidden">
+                                <div class="text-center py-3 rounded-xl border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-violet-600/20 peer-checked:border-violet-500 peer-checked:text-violet-300 transition-all hover:bg-slate-800">
+                                    <span class="font-bold text-lg">10</span><span class="block text-xs">questoes</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="question-count" value="15" class="peer hidden">
+                                <div class="text-center py-3 rounded-xl border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-violet-600/20 peer-checked:border-violet-500 peer-checked:text-violet-300 transition-all hover:bg-slate-800">
+                                    <span class="font-bold text-lg">15</span><span class="block text-xs">questoes</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-2">Tempo Limite por Questao</label>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="timer-limit" value="0" class="peer hidden" checked>
+                                <div class="text-center py-3 rounded-xl border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-violet-600/20 peer-checked:border-violet-500 peer-checked:text-violet-300 transition-all hover:bg-slate-800">
+                                    <svg class="w-5 h-5 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+                                    <span class="text-xs font-medium">Sem tempo</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="timer-limit" value="30" class="peer hidden">
+                                <div class="text-center py-3 rounded-xl border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-violet-600/20 peer-checked:border-violet-500 peer-checked:text-violet-300 transition-all hover:bg-slate-800">
+                                    <svg class="w-5 h-5 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span class="text-xs font-medium">30 seg</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="timer-limit" value="60" class="peer hidden">
+                                <div class="text-center py-3 rounded-xl border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-violet-600/20 peer-checked:border-violet-500 peer-checked:text-violet-300 transition-all hover:bg-slate-800">
+                                    <svg class="w-5 h-5 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span class="text-xs font-medium">1 min</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="timer-limit" value="120" class="peer hidden">
+                                <div class="text-center py-3 rounded-xl border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-violet-600/20 peer-checked:border-violet-500 peer-checked:text-violet-300 transition-all hover:bg-slate-800">
+                                    <svg class="w-5 h-5 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span class="text-xs font-medium">2 min</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-start w-full mt-6 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white font-bold text-lg py-4 rounded-2xl flex items-center justify-center gap-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        INICIAR MISSAO
+                    </button>
+                </form>
+            </div>
+
+            <div class="text-center mt-6 text-slate-500 text-sm">
+                <p>Nivel atual: <span id="home-level" class="text-violet-400 font-semibold">Nivel 1: Concurseiro Iniciante</span></p>
+                <p class="mt-1">XP: <span id="home-xp" class="text-emerald-400 font-semibold">0</span> / <span id="home-xp-next">100</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TELA 2: JOGO -->
+    <div id="screen-game" class="screen min-h-screen flex-col relative z-10">
+        <div class="w-full bg-slate-900/90 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
+            <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="level-badge px-3 py-1.5 rounded-lg text-xs font-bold text-white flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                        <span id="game-level-text">Nivel 1</span>
+                    </div>
+                </div>
+                <div class="flex-1 mx-4">
+                    <div class="flex justify-between text-xs text-slate-400 mb-1">
+                        <span>Progresso</span><span id="progress-text">1 / 5</span>
+                    </div>
+                    <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="h-full bg-gradient-to-r from-violet-500 to-purple-500 rounded-full transition-all duration-500" style="width: 20%"></div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="text-xs text-slate-400">Acertos</div>
+                    <div id="score-display" class="text-lg font-bold text-emerald-400">0</div>
+                </div>
+            </div>
+            <div id="timer-container" class="hidden">
+                <div class="h-1 bg-slate-800">
+                    <div id="timer-bar" class="timer-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400" style="width: 100%"></div>
+                </div>
+                <div class="max-w-3xl mx-auto px-4 py-1 flex justify-between text-xs">
+                    <span id="timer-text" class="text-slate-400">Tempo restante</span>
+                    <span id="timer-seconds" class="font-mono font-bold text-emerald-400">30s</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-1 flex flex-col items-center justify-center p-4 max-w-3xl mx-auto w-full">
+            <div class="question-card w-full rounded-3xl p-6 md:p-8 mb-6 shadow-2xl shadow-purple-900/10">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 rounded-full bg-violet-500/20 text-violet-300 text-xs font-bold border border-violet-500/30">QUESTAO <span id="question-number">1</span></span>
+                    <span id="question-category" class="text-xs text-slate-500">Engenharia de Software</span>
+                </div>
+                <h3 id="question-text" class="text-lg md:text-xl font-semibold text-white leading-relaxed mb-6">Carregando questao...</h3>
+            </div>
+
+            <div id="options-container" class="w-full space-y-3 mb-6"></div>
+
+            <div id="feedback-area" class="w-full hidden">
+                <div id="feedback-message" class="text-center mb-4 p-4 rounded-2xl"></div>
+                <button id="next-btn" class="w-full bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 transition-all hover:scale-[1.02]">
+                    <span>Avancar</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TELA 3: RESULTADOS -->
+    <div id="screen-results" class="screen min-h-screen flex-col items-center justify-center p-4 relative z-10">
+        <div class="w-full max-w-2xl">
+            <div class="text-center mb-8 animate-slide-up">
+                <div id="result-icon" class="inline-flex items-center justify-center w-24 h-24 rounded-full mb-4 text-5xl">🏆</div>
+                <h2 id="result-title" class="text-3xl md:text-4xl font-extrabold text-white mb-2">Missao Concluida!</h2>
+                <p id="result-subtitle" class="text-slate-400 text-lg">Veja como voce se saiu nesta rodada</p>
+            </div>
+
+            <div class="result-card rounded-3xl p-6 md:p-8 mb-6 shadow-2xl shadow-purple-900/20 animate-slide-up" style="animation-delay: 0.1s;">
+                <div class="flex flex-col md:flex-row items-center gap-6 mb-6">
+                    <div class="relative w-32 h-32 flex-shrink-0">
+                        <svg class="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#1e293b" stroke-width="8"/>
+                            <circle id="score-circle" cx="50" cy="50" r="45" fill="none" stroke="url(#scoreGradient)" stroke-width="8" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283" class="progress-ring"/>
+                            <defs>
+                                <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#7c3aed"/><stop offset="100%" style="stop-color:#a855f7"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <span id="result-percentage" class="text-2xl font-extrabold text-white">0%</span>
+                            <span class="text-xs text-slate-400">acertos</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
+                                <div class="text-2xl font-bold text-emerald-400" id="result-correct">0</div>
+                                <div class="text-xs text-slate-400">Acertos</div>
+                            </div>
+                            <div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
+                                <div class="text-2xl font-bold text-red-400" id="result-wrong">0</div>
+                                <div class="text-xs text-slate-400">Erros</div>
+                            </div>
+                            <div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
+                                <div class="text-2xl font-bold text-violet-400" id="result-xp-gained">+0</div>
+                                <div class="text-xs text-slate-400">XP Ganho</div>
+                            </div>
+                            <div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
+                                <div class="text-2xl font-bold text-amber-400" id="result-total-xp">0</div>
+                                <div class="text-xs text-slate-400">XP Total</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="text-slate-300 font-semibold" id="result-level-text">Nivel 1: Concurseiro Iniciante</span>
+                        <span class="text-slate-400"><span id="result-xp-current">0</span> / <span id="result-xp-next">100</span> XP</span>
+                    </div>
+                    <div class="h-3 bg-slate-800 rounded-full overflow-hidden">
+                        <div id="result-xp-bar" class="xp-bar h-full rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div id="level-message" class="text-center p-4 rounded-2xl mb-4 hidden"></div>
+            </div>
+
+            <div id="oracle-section" class="glass-panel rounded-3xl p-6 md:p-8 mb-6 hidden animate-slide-up" style="animation-delay: 0.2s;">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Analise do Oraculo</h3>
+                        <p class="text-sm text-slate-400">Questoes que voce errou — revise com atencao!</p>
+                    </div>
+                </div>
+                <div id="oracle-list" class="space-y-4"></div>
+            </div>
+
+            <div class="text-center animate-slide-up" style="animation-delay: 0.3s;">
+                <button id="play-again-btn" class="btn-start bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white font-bold text-lg py-4 px-8 rounded-2xl inline-flex items-center gap-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    Jogar Novamente
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
